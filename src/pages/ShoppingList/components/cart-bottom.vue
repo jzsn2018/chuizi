@@ -3,7 +3,7 @@
     <div class="fix-bottom-inner">
       <div class="cart-bar-operation">
         <div class="choose-all js-choose-all">
-          <span class="m-blue-checkbox-new" @click="handleClick" :class="{'checkbox-on':checkout}"></span>
+          <span class="m-blue-checkbox-new" @click="selectAllCheckout" :class="{'checkbox-on':changeCheckoutStatus}"></span>
           <span class="text-choose-all">全选</span>
         </div>
         <div class="delete-choose-goods">
@@ -13,11 +13,11 @@
       <div class="shipping">
           <div class="shipping-box">
             <div class="shipping-total shipping-num">
-              <h4 class="highlight">已选择<i>3</i>件商品</h4>
+              <h4 class="highlight">已选择<i>{{checkoutNum}}</i>件商品</h4>
               <h5>共计<i>{{totalCount}}</i>件商品</h5>
             </div>
             <div class="shipping-total shipping-price">
-              <h4 class="highlight"> 应付总额：<span>￥</span><span class="money">{{totalPrice}}</span></h4>
+              <h4 class="highlight"> 应付总额：<span>￥</span><span class="money">{{checkoutPrice}}</span></h4>
               <h5 class="shipping-tips">应付总额不含运费</h5>
             </div>
           </div>
@@ -35,9 +35,7 @@ export default {
   name: 'cartBottom',
   props: [''],
   data () {
-    return {
-      checkout: false
-    }
+    return {}
   },
   computed: {
     totalCount () {
@@ -45,11 +43,20 @@ export default {
     },
     totalPrice () {
       return this.$store.getters.totalPrice
+    },
+    checkoutNum () {
+      return this.$store.getters.checkoutNum
+    },
+    checkoutPrice () {
+      return this.$store.getters.checkoutPrice
+    },
+    changeCheckoutStatus () {
+      return this.$store.getters.changeCheckoutStatus
     }
   },
   methods: {
-    handleClick () {
-      this.checkout = !this.checkout
+    selectAllCheckout () {
+      this.$store.commit('selectAllCheckout')
     }
   }
 }

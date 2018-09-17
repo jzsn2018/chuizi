@@ -1,6 +1,6 @@
 <template>
   <div class="cart-title">
-    购物清单
+    <slot></slot>
   </div>
 </template>
 

@@ -28,6 +28,7 @@ export default {
       if (boff) {
         let goodsData = data
         Vue.set(goodsData, 'count', 1)
+        Vue.set(goodsData, 'checkout', true)
         state.shopCarPanelData.push(goodsData)
         state.ball.show = true
         state.ball.img = data.ali_image
@@ -60,7 +61,7 @@ export default {
   subNum (state, data) {
     state.shopCarPanelData.forEach((goods) => {
       if (goods.sku_id === data) {
-        if (goods.count < 1) return
+        if (goods.count <= 1) return
         goods.count--
       }
     })
@@ -68,8 +69,14 @@ export default {
   changeCheckout (state, data) {
     state.shopCarPanelData.forEach((goods) => {
       if (goods.sku_id === data) {
-        state.checkout = !state.checkout
-        Vue.set(goods, 'checkout', state.checkout)
+        goods.checkout = !goods.checkout
+      }
+    })
+  },
+  selectAllCheckout (state) {
+    state.shopCarPanelData.forEach((goods) => {
+      if (!goods.checkout) {
+        goods.checkout = !goods.checkout
       }
     })
   }

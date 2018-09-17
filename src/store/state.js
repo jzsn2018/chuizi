@@ -10,5 +10,6 @@ export default {
     img: ''
   },
   count: null,
-  checkout: true
+  checkoutNum: null,
+  selectAll: true
 }

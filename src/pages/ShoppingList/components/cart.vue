@@ -2,7 +2,7 @@
   <div class="cart-box">
     <div class="page-cart">
       <div class="gray-box gray-bottom-fixed">
-        <cart-title></cart-title>
+        <cart-title>购物清单</cart-title>
         <div>
           <div v-if="item">
             <cart-table-title></cart-table-title>
