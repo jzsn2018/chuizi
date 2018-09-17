@@ -4,8 +4,8 @@
     <div class="divide">
       <div class="cart-items" v-for='(item, index) of carData' :key='index'>
         <div class="cart-item">
-          <div class="checkbox-container">
-            <span class="m-blue-checkbox-new" @click.self='handleClick'></span>
+          <div class="checkbox-container" @click='handleClick(item.sku_id)' >
+            <span class="m-blue-checkbox-new" :class="{'checkbox-on':item.checkout}"></span>
           </div>
           <div class="item-wrapper">
             <div class="items-thumb">
@@ -29,9 +29,9 @@
               </div>
               <div class="item-cols-num">
                 <div class="quantity">
-                  <span class="button down"></span>
+                  <span class="button down" @click='subNum(item.sku_id)' :class="{'select-disabled':item.count <= 1}"></span>
                   <span class="num">{{item.count}}</span>
-                  <span class="button up"></span>
+                  <span class="button up" @click='addNum(item.sku_id)' :class="{'select-disabled':item.count >= item.limit_num}"></span>
                 </div>
               </div>
               <div class="price">
@@ -73,17 +73,27 @@ export default {
     }
   },
   methods: {
-    handleClick (e) {
-      let result = false
-      e.target.classList.forEach((item) => {
-        if (item.indexOf('checkbox-on') > -1) {
-          e.target.classList.remove('checkbox-on')
-          result = true
-        }
-      })
-      if (!result) {
-        e.target.classList.add('checkbox-on')
-      }
+    //  [代码优化]这种写法是以前JavaScript原生的实现手法，但是与我们用的vue的理念有冲突，建议还是用数据进行驱动视图
+    //   handleClick (e) {
+    //     let result = false
+    //     e.target.classList.forEach((item) => {
+    //       if (item.indexOf('checkbox-on') > -1) {
+    //         e.target.classList.remove('checkbox-on')
+    //         result = true
+    //       }
+    //     })
+    //     if (!result) {
+    //       e.target.classList.add('checkbox-on')
+    //     }
+    //   },
+    handleClick (data) {
+      this.$store.commit('changeCheckout', data)
+    },
+    addNum (data) {
+      this.$store.commit('addNum', data)
+    },
+    subNum (data) {
+      this.$store.commit('subNum', data)
     },
     deleteBtn (data, title) {
       console.log(data)
@@ -245,5 +255,8 @@ export default {
             .up
               float right
               margin 0
+            .select-disabled
+              cursor not-allowed
+              background-position -1px -324px
 
 </style>
