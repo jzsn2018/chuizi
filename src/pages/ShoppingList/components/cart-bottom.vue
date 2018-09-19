@@ -3,10 +3,10 @@
     <div class="fix-bottom-inner">
       <div class="cart-bar-operation">
         <div class="choose-all js-choose-all">
-          <span class="m-blue-checkbox-new" @click="selectAllCheckout" :class="{'checkbox-on':changeCheckoutStatus}"></span>
+          <span class="m-blue-checkbox-new" @click="selectAllCheckout(changeCheckoutStatus)" :class="{'checkbox-on':changeCheckoutStatus}"></span>
           <span class="text-choose-all">全选</span>
         </div>
-        <div class="delete-choose-goods">
+        <div class="delete-choose-goods" @click='deleteSelectGoods'>
           删除选中的商品
         </div>
       </div>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <span class="big-main-btn">
-            <a href="" class="btn-a">现在结算</a>
+            <router-link  class="btn-a" :class="{'btn-active':checkoutNum}" to='checkout'>现在结算</router-link>
           </span>
         </div>
     </div>
@@ -55,8 +55,11 @@ export default {
     }
   },
   methods: {
-    selectAllCheckout () {
-      this.$store.commit('selectAllCheckout')
+    selectAllCheckout (changeCheckoutStatus) {
+      this.$store.commit('selectAllCheckout', changeCheckoutStatus)
+    },
+    deleteSelectGoods () {
+      this.$store.commit('deleteSelectGoods')
     }
   }
 }
@@ -171,18 +174,22 @@ export default {
       text-align center
       text-shadow rgba(0,0,0,.15) 0 -1px 0
       user-select none
-      background #567ce6 linear-gradient(#799cea,#567ce6)
+      background #eaeaea
       box-shadow 0 1px 3px rgba(0,0,0,.1), inset 0 -1px 2px rgba(0,0,0,.2)
       .btn-a
         box-shadow none
         color #fff
         display block
         border-radius 9px
-        cursor pointer
+        cursor not-allowed
         text-shadow none
         padding 2px 32px
         font-size 16px
         height 44px
         line-height 45px
         text-decoration none
+    .btn-active
+      background #567ce6 linear-gradient(#799cea,#567ce6)
+      color #fff
+      cursor pointer !important
 </style>

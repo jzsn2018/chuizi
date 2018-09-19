@@ -1,6 +1,8 @@
 <template>
   <div class="page-cart">
-    <cart-title>发票信息</cart-title>
+    <cart-title>
+      发票信息
+    </cart-title>
     <invoice-inner></invoice-inner>
   </div>
 </template>
@@ -29,5 +31,4 @@ export default {
   width 1220px
   padding 0 0 25px
   margin 0 auto
-  padding-top 30px
 </style>

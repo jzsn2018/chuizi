@@ -1,19 +1,21 @@
 <template>
   <div class="page-cart">
-    <cart-title>我的优惠</cart-title>
-    <invoice-inner></invoice-inner>
+    <cart-title>
+      我的优惠
+    </cart-title>
+    <discost-inner></discost-inner>
   </div>
 </template>
 
 <script>
 import cartTitle from '@/pages/shoppingList/components/cartTitle'
-import invoiceInner from './invoiceInner'
+import discostInner from './discostInner'
 export default {
   name: 'discost',
   props: [''],
   components: {
     cartTitle,
-    invoiceInner
+    discostInner
   },
   data () {
     return {
@@ -29,5 +31,4 @@ export default {
   width 1220px
   padding 0 0 25px
   margin 0 auto
-  padding-top 30px
 </style>

@@ -1,19 +1,19 @@
 <template>
   <div class="checkout-box">
-    <home-header></home-header>
     <receipt-information></receipt-information>
+    <detailed-list></detailed-list>
     <invoice></invoice>
     <discost></discost>
-    <home-footer></home-footer>
+    <checkout-bar></checkout-bar>
   </div>
 </template>
 
 <script>
-import homeHeader from '@/pages/home/components/header'
-import homeFooter from '@/pages/home/components/footer'
 import ReceiptInformation from '@/pages/checkout/components/ReceiptInformation'
+import DetailedList from '@/pages/checkout/components/DetailedList'
 import invoice from '@/pages/checkout/components/invoice'
 import discost from '@/pages/checkout/components/discost'
+import checkoutBar from '@/pages/checkout/components/checkoutBar'
 export default {
   name: 'checkout',
   props: [''],
@@ -23,11 +23,11 @@ export default {
     }
   },
   components: {
-    homeHeader,
-    homeFooter,
     ReceiptInformation,
+    DetailedList,
     invoice,
-    discost
+    discost,
+    checkoutBar
   },
   methods: {}
 }

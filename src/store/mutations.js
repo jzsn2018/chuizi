@@ -73,10 +73,24 @@ export default {
       }
     })
   },
-  selectAllCheckout (state) {
+  selectAllCheckout (state, changeCheckoutStatus) {
     state.shopCarPanelData.forEach((goods) => {
-      if (!goods.checkout) {
-        goods.checkout = !goods.checkout
+      goods.checkout = !changeCheckoutStatus
+    })
+  },
+  deleteSelectGoods (state) {
+    let i = state.shopCarPanelData.length
+    while (i--) {
+      if (state.shopCarPanelData[i].checkout) {
+        state.shopCarPanelData.splice(i, 1)
+      }
+    }
+  },
+  chooseDefault (state, data) {
+    state.receiveInfo.forEach((item, index) => {
+      item.default = false
+      if (index === data) {
+        item.default = true
       }
     })
   }

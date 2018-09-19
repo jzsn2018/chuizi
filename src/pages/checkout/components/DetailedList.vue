@@ -1,19 +1,19 @@
 <template>
   <div class="page-cart">
-    <cart-title>收货信息</cart-title>
-    <box-inner></box-inner>
+    <cart-title>购物清单</cart-title>
+    <detail-list-inner></detail-list-inner>
   </div>
 </template>
 
 <script>
 import cartTitle from '@/pages/shoppingList/components/cartTitle'
-import boxInner from './boxInner'
+import detailListInner from './detailListInner'
 export default {
   name: 'ReceiptInformation',
   props: [''],
   components: {
     cartTitle,
-    boxInner
+    detailListInner
   },
   data () {
     return {
@@ -29,5 +29,7 @@ export default {
   width 1220px
   padding 0 0 25px
   margin 0 auto
-  padding-top 30px
+  max-height 600px
+  overflow-x hidden
+  overflow-y auto
 </style>

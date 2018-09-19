@@ -6,9 +6,9 @@
     </p>
     <div class="invoice-detail">
       <p>发票抬头：
-        <span class="blue-radio blue-radio-on"></span>
+        <span class="blue-radio"  @click='changeRadio'><i  :class="{'blue-radio-on':Radio}"></i></span>
         <span>个人</span>
-        <span class="blue-radio"></span>
+        <span class="blue-radio" @click='changeRadio'><i :class="{'blue-radio-on':!Radio}"></i></span>
         <span>单位</span>
       </p>
     </div>
@@ -24,10 +24,14 @@ export default {
   props: [''],
   data () {
     return {
-
+      Radio: true
     }
   },
-  methods: {}
+  methods: {
+    changeRadio () {
+      this.Radio = !this.Radio
+    }
+  }
 }
 </script>
 <style lang='stylus' scoped>
@@ -63,9 +67,12 @@ export default {
       border-radius 10px
       box-shadow inset 0 2px 4px rgba(0,0,0,.05)
       cursor pointer
-    .blue-radio-on
-      background #5079d9
-      background-size 10%
+      .blue-radio-on
+        background #5079d9
+        width 10px
+        height 10px
+        display block
+        border-radius 50%
   .invoice-label
     position relative
     padding-top 25px
